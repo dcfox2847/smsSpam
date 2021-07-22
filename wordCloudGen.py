@@ -22,8 +22,19 @@ def show_wordcloud(df, title):
     stopwords = set(wordcloud.STOPWORDS)
     fig_wordcloud = wordcloud.WordCloud(stopwords=stopwords, background_color="#ffa78c",
                                         width=3000, height=2000).generate(text)
-    plt.figure(figsize=(15,15), frameon=True)
+    #plt.figure(figsize=(15,15), frameon=True)
     plt.imshow(fig_wordcloud)
     plt.axis('off')
+    plt.title(title, fontsize=20)
+    plt.show()
+
+def show_wordcloud_alt(df, title, ax):
+    text = ' '.join(df['SMS'].astype(str).tolist())
+    stopwords = set(wordcloud.STOPWORDS)
+    fig_wordcloud = wordcloud.WordCloud(stopwords=stopwords, background_color="#ffa78c",
+                                        width=3000, height=2000).generate(text)
+    plt.figure(figsize=(15,15), frameon=True)
+    plt.imshow(fig_wordcloud)
+    plt.axis(ax)
     plt.title(title, fontsize=20)
     plt.show()

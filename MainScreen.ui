@@ -33,7 +33,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>5</number>
+     <number>4</number>
     </property>
     <widget class="QWidget" name="data_page">
      <property name="styleSheet">
@@ -86,6 +86,16 @@
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
+     <widget class="QWidget" name="hist_widget" native="true">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>80</y>
+        <width>901</width>
+        <height>701</height>
+       </rect>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="heat_page">
      <widget class="QLabel" name="heat_map_label">
@@ -107,6 +117,16 @@
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QWidget" name="heat_widget" native="true">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>90</y>
+        <width>911</width>
+        <height>691</height>
+       </rect>
       </property>
      </widget>
     </widget>
@@ -132,6 +152,16 @@
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
+     <widget class="QWidget" name="train_cloud_widget" native="true">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>80</y>
+        <width>911</width>
+        <height>681</height>
+       </rect>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="test_cloud_page">
      <widget class="QLabel" name="test_cloud_label">
@@ -153,6 +183,16 @@
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QWidget" name="test_cloud_widget" native="true">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>90</y>
+        <width>931</width>
+        <height>681</height>
+       </rect>
       </property>
      </widget>
     </widget>

@@ -1,0 +1,20 @@
+class Canvas(FigureCanvas):
+    def __init__(self, parent):
+        # fig, self.ax = plt.subplots(figsize=(4, 3), dpi=200)
+        data = Data()
+        fig, self.ax1 = plt.subplots(nrows=1, ncols=1, tight_layout=True, figsize=(10, 6))
+        super().__init__(fig)
+        self.setParent(parent)
+        self.ax1.hist(column=data.df.Length, by=data.df.Label, bins=50)
+
+        # self.ax = data.df.hist(column='Length', by='Label', bins=50, figsize=(10, 4))
+        # plt.show()
+        self.ax1.grid()
+
+        # fig.tight_layout()
+
+        # t = np.arange(0.0, 2.0, 0.01)
+        # s = 1 + np.sin(2 * np.pi * t)
+        # self.ax.plot(t,s)
+        # self.ax.set(xlabel='Time (s)', ylabel='voltage (mV)', title='About as simple as it gets.')
+        # self.ax.grid()
