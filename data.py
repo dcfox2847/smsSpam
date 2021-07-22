@@ -41,6 +41,7 @@ class Data:
         self.predictions = None
         self.df = None
         self.df2 = None
+        self.count_vector = None
 
         # Import the data from the dataset
         file_path = '/home/televator/Coding/spam_sample/smsspamcollection/SMSSpamCollection'
@@ -55,10 +56,10 @@ class Data:
         # Split the data, and initiate the count vectorizer
         x_train, x_test, y_train, y_test = train_test_split(self.df['SMS'], self.df['Label'], test_size=0.20, random_state=1)
         # Create the count vectorizer
-        count_vector = CountVectorizer()
+        self.count_vector = CountVectorizer()
         # Vectorize the data, then test it in the 'mnb' algorithm
-        training_data = count_vector.fit_transform(x_train)
-        testing_data = count_vector.transform(x_test)
+        training_data = self.count_vector.fit_transform(x_train)
+        testing_data = self.count_vector.transform(x_test)
         self.mnb = MultinomialNB()
         self.mnb.fit(training_data, y_train)
         self.predictions = self.mnb.predict(testing_data)
@@ -66,7 +67,7 @@ class Data:
         # This data frame has the SMS message, the length of the message, and will show 'Spam' or 'Ham' as a result
         for row in x_test:
             message = row
-            text = count_vector.transform([message])
+            text = self.count_vector.transform([message])
             prediction = self.mnb.predict(text)
             new_string = str(prediction)
             characters_to_remove = "',[,]"

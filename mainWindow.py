@@ -11,7 +11,8 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas, FigureCanvasQTAgg
 from sklearn.model_selection import train_test_split
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QApplication, QWidget
+from PyQt5.QtCore import pyqtSlot
+from PyQt5.QtWidgets import QApplication, QWidget, QPushButton
 from PyQt5.QtWidgets import QMainWindow
 from MainScreen import Ui_MainWindow
 
@@ -78,15 +79,35 @@ class MainWindow:
         self.ui.train_cloud_button.clicked.connect(self.show_train_cloud)
         self.ui.test_cloud_button.clicked.connect(self.show_test_cloud)
         self.ui.check_button.clicked.connect(self.show_check_message)
+        # self.ui.check_message_button.clicked.connect(self.message_button_clicked(data))
 
         # BELOW IS TESTING THAT DATA CAN BE ACCESSED FROM INSIDE THE CLASS ONCE INSTANTIATED
         # The 'data' variable, will hold all of the data instantiated from teh data, class
-        data = Data()
+        self.data = Data()
+        self.ui.check_message_button.clicked.connect(self.message_button_clicked)
         hist_chart = Hist_Canvas(self.ui.hist_widget)
         heat_chart = Heat_Canvas(self.ui.heat_widget)
         train_word_cloud_chart = Word_Cloud_Canvas(self.ui.train_cloud_widget, "Train")
         test_word_cloud_chart = Word_Cloud_Canvas(self.ui.test_cloud_widget, "Test")
 
+    def message_button_clicked(self):
+        # data = Data()
+        message_test = self.ui.message_text_field.text()
+        text = self.data.count_vector.transform([message_test])
+        prediction = self.data.mnb.predict(text)
+        show_prediction = str(prediction)
+        characters_to_remove = "',[,]"
+        for character in characters_to_remove:
+            show_prediction = show_prediction.replace(character, '')
+        if show_prediction == '0':
+            final_string = "Ham"
+        elif show_prediction == '1':
+            final_string = "Spam"
+        else:
+            final_string = "Human checking is needed at this time for validation."
+        self.ui.result_label.setText(final_string)
+
+        # prediction = data.mnb.predict(message_test)
 
     def show(self):
         self.main_win.show()
