@@ -20,7 +20,7 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(136, 138, 133);</string>
+   <string notr="true">background-color: rgb(54, 54, 54);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QStackedWidget" name="stackedWidget">
@@ -53,6 +53,9 @@
         <pointsize>18</pointsize>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: #ff007f;</string>
+      </property>
       <property name="text">
        <string>Data Set of Spam SMS Messages</string>
       </property>
@@ -64,10 +67,13 @@
       <property name="geometry">
        <rect>
         <x>720</x>
-        <y>110</y>
+        <y>100</y>
         <width>241</width>
-        <height>661</height>
+        <height>671</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
       </property>
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
@@ -87,6 +93,9 @@
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
          <widget class="QLabel" name="accuracy_label">
+          <property name="styleSheet">
+           <string notr="true">color: #ff007f;</string>
+          </property>
           <property name="text">
            <string>Accuracy Score:</string>
           </property>
@@ -97,6 +106,9 @@
         </item>
         <item>
          <widget class="QLabel" name="precision_label">
+          <property name="styleSheet">
+           <string notr="true">color: #ff007f;</string>
+          </property>
           <property name="text">
            <string>Precision Score:</string>
           </property>
@@ -107,6 +119,9 @@
         </item>
         <item>
          <widget class="QLabel" name="recall_label">
+          <property name="styleSheet">
+           <string notr="true">color: #ff007f;</string>
+          </property>
           <property name="text">
            <string>Recall Score:</string>
           </property>
@@ -114,6 +129,9 @@
         </item>
         <item>
          <widget class="QLabel" name="f1_label">
+          <property name="styleSheet">
+           <string notr="true">color: #ff007f;</string>
+          </property>
           <property name="text">
            <string>F1 Score:</string>
           </property>
@@ -122,7 +140,7 @@
        </layout>
       </widget>
      </widget>
-     <widget class="QTableView" name="tableView">
+     <widget class="QTableView" name="data_set_table">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -130,6 +148,12 @@
         <width>661</width>
         <height>671</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #ff007f;</string>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustToContents</enum>
       </property>
      </widget>
     </widget>
@@ -141,7 +165,7 @@
       <property name="geometry">
        <rect>
         <x>220</x>
-        <y>20</y>
+        <y>0</y>
         <width>571</width>
         <height>71</height>
        </rect>
@@ -150,6 +174,9 @@
        <font>
         <pointsize>18</pointsize>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #ff007f;</string>
       </property>
       <property name="text">
        <string>Histogram Data</string>
@@ -173,8 +200,8 @@
      <widget class="QLabel" name="heat_map_label">
       <property name="geometry">
        <rect>
-        <x>330</x>
-        <y>20</y>
+        <x>340</x>
+        <y>-10</y>
         <width>311</width>
         <height>81</height>
        </rect>
@@ -183,6 +210,9 @@
        <font>
         <pointsize>18</pointsize>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #ff007f;</string>
       </property>
       <property name="text">
        <string>Heat Map of Test Data</string>
@@ -207,7 +237,7 @@
       <property name="geometry">
        <rect>
         <x>250</x>
-        <y>10</y>
+        <y>-20</y>
         <width>491</width>
         <height>81</height>
        </rect>
@@ -216,6 +246,9 @@
        <font>
         <pointsize>18</pointsize>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #ff007f;</string>
       </property>
       <property name="text">
        <string>Training Data Set Word Cloud</string>
@@ -240,7 +273,7 @@
       <property name="geometry">
        <rect>
         <x>320</x>
-        <y>10</y>
+        <y>-20</y>
         <width>381</width>
         <height>81</height>
        </rect>
@@ -249,6 +282,9 @@
        <font>
         <pointsize>18</pointsize>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #ff007f;</string>
       </property>
       <property name="text">
        <string>Test Data Set Word Cloud</string>
@@ -283,8 +319,11 @@
         <pointsize>18</pointsize>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: #ff007f;</string>
+      </property>
       <property name="text">
-       <string>Check Message Below</string>
+       <string>Message Checking Tool</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -312,6 +351,9 @@
         <height>51</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: #ff007f;</string>
+      </property>
       <property name="text">
        <string>Enter You message below:</string>
       </property>
@@ -338,9 +380,9 @@
      <widget class="QLabel" name="result_label">
       <property name="geometry">
        <rect>
-        <x>360</x>
+        <x>170</x>
         <y>560</y>
-        <width>311</width>
+        <width>691</width>
         <height>81</height>
        </rect>
       </property>
@@ -349,8 +391,11 @@
         <pointsize>18</pointsize>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: #ff007f;</string>
+      </property>
       <property name="text">
-       <string>RESULT</string>
+       <string>Your result will show up here as either &quot;Spam&quot; or &quot;Ham&quot;</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>

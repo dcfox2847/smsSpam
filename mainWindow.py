@@ -1,18 +1,14 @@
 import sys
 
-from matplotlib.figure import Figure
-import dataCleaning as dc
-import wordCloudGen as wcg
 from data import *
-import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas, FigureCanvasQTAgg
 from sklearn.model_selection import train_test_split
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtCore import pyqtSlot
-from PyQt5.QtWidgets import QApplication, QWidget, QPushButton
+from PyQt5.QtCore import pyqtSlot, QAbstractTableModel, Qt
+from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QTableView
 from PyQt5.QtWidgets import QMainWindow
 from MainScreen import Ui_MainWindow
 
@@ -65,6 +61,29 @@ class Word_Cloud_Canvas(FigureCanvas):
         plt.show()
         # wordCloudGen.show_wordcloud_alt(test_frames, "Test Set", self.ax1)
 
+class Data_Table(QAbstractTableModel):
+
+    def __init__(self, data):
+        QAbstractTableModel.__init__(self)
+        self._data = data
+
+    def rowCount(self, parent=None):
+        return self._data.shape[0]
+
+    def columnCount(self, parent=None):
+        return self._data.shape[1]
+
+    def data(self, index, role=Qt.DisplayRole):
+        if index.isValid():
+            if role == Qt.DisplayRole:
+                return str(self._data.iloc[index.row(), index.column()])
+        return None
+
+    def headerData(self, col, orientation, role):
+        if orientation == Qt. Horizontal and role == Qt.DisplayRole:
+            return self._data.columns[col]
+        return None
+
 
 class MainWindow:
     def __init__(self):
@@ -79,9 +98,6 @@ class MainWindow:
         self.ui.train_cloud_button.clicked.connect(self.show_train_cloud)
         self.ui.test_cloud_button.clicked.connect(self.show_test_cloud)
         self.ui.check_button.clicked.connect(self.show_check_message)
-        # self.ui.check_message_button.clicked.connect(self.message_button_clicked(data))
-
-        # BELOW IS TESTING THAT DATA CAN BE ACCESSED FROM INSIDE THE CLASS ONCE INSTANTIATED
         # The 'data' variable, will hold all of the data instantiated from teh data, class
         self.data = Data()
         self.ui.check_message_button.clicked.connect(self.message_button_clicked)
@@ -89,6 +105,19 @@ class MainWindow:
         heat_chart = Heat_Canvas(self.ui.heat_widget)
         train_word_cloud_chart = Word_Cloud_Canvas(self.ui.train_cloud_widget, "Train")
         test_word_cloud_chart = Word_Cloud_Canvas(self.ui.test_cloud_widget, "Test")
+        # Add the metric information to the labels on the main page of the application
+        acc_text = self.ui.accuracy_label.text() + " " + self.data.accuracy_score
+        prec_text = self.ui.precision_label.text() + " " + self.data.precision_score
+        recall_text = self.ui.recall_label.text() + " " + self.data.recall_score
+        f1_text = self.ui.f1_label.text() + " " + self.data.f1_score
+        self.ui.accuracy_label.setText(acc_text)
+        self.ui.precision_label.setText(prec_text)
+        self.ui.recall_label.setText(recall_text)
+        self.ui.f1_label.setText(f1_text)
+        data_table = Data_Table(self.data.new_test_dataframe)
+        self.ui.data_set_table.setModel(data_table)
+        self.ui.data_set_table.resizeColumnsToContents()
+
 
     def message_button_clicked(self):
         # data = Data()
@@ -106,8 +135,6 @@ class MainWindow:
         else:
             final_string = "Human checking is needed at this time for validation."
         self.ui.result_label.setText(final_string)
-
-        # prediction = data.mnb.predict(message_test)
 
     def show(self):
         self.main_win.show()

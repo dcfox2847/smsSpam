@@ -31,7 +31,7 @@
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: rgb(211, 215, 207);</string>
+    <string notr="true">color: #ff007f;</string>
    </property>
    <property name="text">
     <string>Login</string>

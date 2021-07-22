@@ -18,7 +18,7 @@ class Ui_Dialog(object):
         font = QtGui.QFont()
         font.setPointSize(28)
         self.login_label.setFont(font)
-        self.login_label.setStyleSheet("color: rgb(211, 215, 207);")
+        self.login_label.setStyleSheet("color: #ff007f;")
         self.login_label.setAlignment(QtCore.Qt.AlignCenter)
         self.login_label.setObjectName("login_label")
         self.username_label = QtWidgets.QLabel(Dialog)

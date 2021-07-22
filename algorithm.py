@@ -1,3 +1,10 @@
+"""
+This file was used alongside the 'dataCleaning.py' file in order to recreate the steps necessary
+to use a Multinomial Naive Bayes Classification algorithim, by recreating the steps needed for data cleaning
+and processing. Count vectorization and SciKit learn tools were imported to streamline the process in the final
+application. These files were left to show exactly what steps are required to accomplish those tasks natively.
+"""
+
 import wordCloudGen
 from dataCleaning import *
 
@@ -19,14 +26,6 @@ import scipy as sp
 column_names = ["label", "sms"]
 training_set = pd.DataFrame(columns=column_names)
 test_set = pd.DataFrame(columns=column_names)
-# training_set = pd.DataFrame(columns=column_names)
-# test_set = pd.DataFrame(columns=column_names)
-
-# Constructor
-
-# Begin the parsing and utilization of data from dataset
-
-# def main_algorithm(self, training_set, test_set, column_names):
 # Import the data from the dataset
 file_path = '/home/televator/Coding/spam_sample/smsspamcollection/SMSSpamCollection'
 # Take data from CSV dataset and put it into a Pandas DataFrame
@@ -68,41 +67,4 @@ for word in training_vocab:
     denom = n_spam + (n_vocabulary * alpha)
     p_word_given_spam = n_word_given_spam / denom
     parameters_spam[word] = p_word_given_spam
-
-    # n_word_given_ham = ham_messages[word].sum()
-    # p_word_given_ham = (n_word_given_ham + alpha) / (n_ham + alpha*n_vocabulary)
-    # parameters_ham[word] = p_word_given_ham
-
-# def classify(message):
-#     message = re.sub('\W', ' ', message)
-#     message = message.lower().split()
-#     p_spam_given_message = p_spam
-#     p_ham_given_message = p_ham
-#
-#     for word in message:
-#         if word in parameters_spam:
-#             p_spam_given_message *= parameters_spam[word]
-#
-#         if word in parameters_ham:
-#             p_ham_given_message *= parameters_ham[word]
-#
-#     print('P(Spam|message):', p_spam_given_message)
-#     print('P(Ham|message):', p_ham_given_message)
-#
-#     if p_ham_given_message > p_spam_given_message:
-#         print('Label; ham')
-#     elif p_ham_given_message < p_spam_given_message:
-#         print('Label: spam')
-#     else:
-#         print('Equal probabilities, have a human classify this!')
-#
-#
-# # TESTING THIS TO BE USED AS THE CLASS CONSTRUCTOR, AND FOR CALLING AND PARSING ALL DATA WHILE THE
-# classify('WINNER! This is the secret code to unlock the money: C3421.')
-
-
-
-
-
-
 

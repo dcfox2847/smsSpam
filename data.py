@@ -4,18 +4,9 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import *
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
-import re
-import math
-import os
-import numpy as np
+
 import pandas as pd
-import seaborn as sns
-import matplotlib
-import matplotlib.pyplot as plt
-import sklearn
-import nltk
-import warnings
-import scipy as sp
+
 
 class Data:
     # Variables
@@ -42,15 +33,19 @@ class Data:
         self.df = None
         self.df2 = None
         self.count_vector = None
+        self.accuracy_score = None
+        self.precision_score = None
+        self.recall_score = None
+        self.f1_score = None
 
         # Import the data from the dataset
-        file_path = '/home/televator/Coding/spam_sample/smsspamcollection/SMSSpamCollection'
+        # file_path = '/home/televator/Coding/spam_sample/smsspamcollection/SMSSpamCollection'
+        file_path = 'SMSSpamCollection.csv'
         # Take data from CSV dataset and put it into a Pandas DataFrame
         self.df = pd.read_csv(file_path, sep='\t', header=None, names=['Label', 'SMS'])
         self.df['Length'] = self.df['SMS'].apply(len)
         self.df2 = pd.read_csv(file_path, sep='\t', header=None, names=['Label', 'SMS'])
         self.df2['Length'] = self.df['SMS'].apply(len)
-        print(self.df2)
         # Create keys for the labels
         self.df.loc[:, 'Label'] = self.df.Label.map({'ham':0, 'spam':1})
         # Split the data, and initiate the count vectorizer
@@ -83,13 +78,18 @@ class Data:
             self.i = self.i + 1
 
         # Show Evaluation information from prediction over the entire test set
-        print('Accuracy Score: {}'.format(accuracy_score(y_test, self.predictions)))
-        print('Precision Score: {}'.format(precision_score(y_test, self.predictions)))
-        print('Recall Score: {}'.format(recall_score(y_test, self.predictions)))
-        print('F1 Score: {}'.format(f1_score(y_test, self.predictions)))
+        self.accuracy_score = str(accuracy_score(y_test, self.predictions))
+        self.precision_score = str(precision_score(y_test, self.predictions))
+        self.recall_score = str(recall_score(y_test, self.predictions))
+        self. f1_score = str(f1_score(y_test, self.predictions))
 
 
-        #Histogram of date
+"""
+
+    THIS DATA BELOW IS THE VISUALIZATIONS, CREATED IN THIS CLASS AND THEN MOVED.
+    KEPT FOR REFERENCE.
+
+        # Histogram of date
         # self.df.hist(column='Length', by='Label', bins=50, figsize=(10,4))
         # plt.show()
 
@@ -111,16 +111,7 @@ class Data:
 
         # Make WordClouds of each the training set and the test set
         # Create WordClouds for the Test and the Training set
-        """ UNCOMMENT TO GET YOUR WORD CLOUDS BACK """
         # training_frames, test_frames = dataCleaning.make_sets(self.df, self.training_frames, self.test_frames)
         # wordCloudGen.show_wordcloud(training_frames, "Training Set")
         # wordCloudGen.show_wordcloud(test_frames, "Test Set")
-
-
-    '''                  TEST ALL BELOW                    '''
-    '''                UNCOMMENT ALL LINES BELOW                '''
-
-
-
-
-
+"""
