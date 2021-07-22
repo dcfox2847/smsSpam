@@ -1,5 +1,5 @@
 import sys
-
+import csv
 from data import *
 import pandas as pd
 import seaborn as sns
@@ -8,9 +8,10 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from sklearn.model_selection import train_test_split
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import pyqtSlot, QAbstractTableModel, Qt
-from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QTableView
-from PyQt5.QtWidgets import QMainWindow
+from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QTableView, QMessageBox
+from PyQt5.QtWidgets import QMainWindow, QDialog
 from MainScreen import Ui_MainWindow
+from login import Ui_Dialog
 
 # matplotlib.use("Qt5Agg")
 
@@ -87,6 +88,8 @@ class Data_Table(QAbstractTableModel):
 
 class MainWindow:
     def __init__(self):
+        # login_win = LoginWindow()
+        # login_win.show()
         self.main_win = QMainWindow()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self.main_win)
@@ -117,7 +120,6 @@ class MainWindow:
         data_table = Data_Table(self.data.new_test_dataframe)
         self.ui.data_set_table.setModel(data_table)
         self.ui.data_set_table.resizeColumnsToContents()
-
 
     def message_button_clicked(self):
         # data = Data()
@@ -158,8 +160,75 @@ class MainWindow:
         self.ui.stackedWidget.setCurrentWidget((self.ui.check_page))
 
 
+class LoginWindow(QDialog):
+    def __init__(self, parent=None):
+        super(QDialog, self).__init__(parent)
+        self.login_win = QDialog()
+        self.ui = Ui_Dialog()
+        self.ui.setupUi(self.login_win)
+
+        self.ui.login_button.clicked.connect(self.login_button_clicked)
+
+    def show(self):
+        self.login_win.show()
+
+    def hide(self):
+        self.login_win.hide()
+
+    def log_to_file(self, username, password, login_success):
+        file = open("login.txt", "a")
+        file.write("\n" + username + ", " + password + ", " + login_success)
+        file.close()
+
+    def login_button_clicked(self):
+        filename = "accounts.csv"
+        username = self.ui.username_field.text()
+        password = self.ui.password_field.text()
+        login = False
+        username_found = False
+        login_success = "Unsuccessful"
+        # Add a conditional check against a CSV to see if the username and password are valid
+        # If so, use conditional to change 'login_success' variable to "Access Granted" or "Access Denied"
+        with open(filename, 'r') as csv_file:
+            csv_reader = csv.reader(csv_file)
+            fields = next(csv_reader)   # Extract the column headers and store it in 'fields' variable
+            for row in csv_reader:
+                if row[0].lower() == str.lower(username):
+                    username_found = True
+                    print("Username found...")
+                    if row[1].lower() == str.lower(password):
+                        login_success = "Successful"
+                        login = True
+                        print("User name and password both found and match")
+                        self.log_to_file(username, password, login_success)
+                        self.hide()
+                        main_win.show()
+                        # self.close()
+                    else:
+                        login_success = "Unsuccessful"
+                        msg = QMessageBox()
+                        msg.setWindowTitle("Unsuccessful Login")
+                        msg.setText("Incorrect Username or Password")
+                        msg.exec_()
+                        self.log_to_file(username, password, login_success)
+                        # Switch to the main window here
+                        # self.hide()
+
+                else:
+                    continue
+            if not login and not username_found:
+                msg = QMessageBox()
+                msg.setWindowTitle("Unsuccessful Login")
+                msg.setText("Incorrect Username")
+                msg.exec_()
+                self.log_to_file(username, password, login_success)
+        # Attempt to load the new window now
+
+
 if __name__ == '__main__':
     app = QApplication(sys.argv)
+    login_win = LoginWindow()
+    login_win.show()
     main_win = MainWindow()
-    main_win.show()
+    # main_win.show()
     sys.exit(app.exec_())

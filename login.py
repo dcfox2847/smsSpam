@@ -52,16 +52,6 @@ class Ui_Dialog(object):
         self.login_button.setStyleSheet("background-color: rgb(211, 215, 207);\n"
 "font-size: 18px;")
         self.login_button.setObjectName("login_button")
-        self.test_label = QtWidgets.QLabel(Dialog)
-        self.test_label.setGeometry(QtCore.QRect(20, 500, 201, 31))
-        self.test_label.setStyleSheet("font-size:15pt;\n"
-"color: #ff007f;")
-        self.test_label.setObjectName("test_label")
-        self.test_button = QtWidgets.QPushButton(Dialog)
-        self.test_button.setGeometry(QtCore.QRect(30, 560, 161, 61))
-        self.test_button.setStyleSheet("background-color: rgb(211, 215, 207);\n"
-"font-size: 18px;")
-        self.test_button.setObjectName("test_button")
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -73,6 +63,4 @@ class Ui_Dialog(object):
         self.username_label.setText(_translate("Dialog", "Username"))
         self.password_label.setText(_translate("Dialog", "Password"))
         self.login_button.setText(_translate("Dialog", "Login"))
-        self.test_label.setText(_translate("Dialog", "Test_Button_to_Main"))
-        self.test_button.setText(_translate("Dialog", "Test_To_Main"))
 

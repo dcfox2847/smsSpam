@@ -133,40 +133,6 @@ font-size: 18px;</string>
     <string>Login</string>
    </property>
   </widget>
-  <widget class="QLabel" name="test_label">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>500</y>
-     <width>201</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">font-size:15pt;
-color: #ff007f;</string>
-   </property>
-   <property name="text">
-    <string>Test_Button_to_Main</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="test_button">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>560</y>
-     <width>161</width>
-     <height>61</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(211, 215, 207);
-font-size: 18px;</string>
-   </property>
-   <property name="text">
-    <string>Test_To_Main</string>
-   </property>
-  </widget>
  </widget>
  <resources/>
  <connections/>
