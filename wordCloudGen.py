@@ -28,6 +28,8 @@ def show_wordcloud(df, title):
     plt.title(title, fontsize=20)
     plt.show()
 
+
+# Function to implement the capabilities of the class
 def show_wordcloud_alt(df, title, ax):
     text = ' '.join(df['SMS'].astype(str).tolist())
     stopwords = set(wordcloud.STOPWORDS)

@@ -1,5 +1,6 @@
 import sys
 import csv
+import pyperclip
 from data import *
 import pandas as pd
 import seaborn as sns
@@ -128,6 +129,17 @@ class MainWindow:
         data_table = Data_Table(self.data.new_test_dataframe)
         self.ui.data_set_table.setModel(data_table)
         self.ui.data_set_table.resizeColumnsToContents()
+        self.ui.get_row_button.clicked.connect(self.get_row_data)
+
+    def get_row_data(self):
+        message = []
+        length = []
+        result = []
+        index =(self.ui.data_set_table.selectionModel().currentIndex())
+        value = str(index.sibling(index.row(), index.column()).data())
+        print(value)
+        pyperclip.copy(value)
+
 
     def message_button_clicked(self):
         # data = Data()
@@ -175,6 +187,12 @@ class LoginWindow(QDialog):
         self.ui = Ui_Dialog()
         self.ui.setupUi(self.login_win)
 
+        msg = QMessageBox()
+        msg.setWindowTitle("Application Loading")
+        msg.setText("Application is loading. \n"
+                    "This will take 20-30 seconds.\n"
+                    "The application will begin shortly.")
+        msg.exec_()
         self.ui.login_button.clicked.connect(self.login_button_clicked)
 
     def show(self):

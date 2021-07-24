@@ -45,7 +45,7 @@
         <x>310</x>
         <y>0</y>
         <width>381</width>
-        <height>71</height>
+        <height>61</height>
        </rect>
       </property>
       <property name="font">
@@ -67,7 +67,7 @@
       <property name="geometry">
        <rect>
         <x>770</x>
-        <y>100</y>
+        <y>70</y>
         <width>251</width>
         <height>671</height>
        </rect>
@@ -235,7 +235,7 @@ background-color: #ff007f;</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>100</y>
+        <y>70</y>
         <width>741</width>
         <height>671</height>
        </rect>
@@ -245,6 +245,22 @@ background-color: #ff007f;</string>
       </property>
       <property name="sizeAdjustPolicy">
        <enum>QAbstractScrollArea::AdjustToContents</enum>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="get_row_button">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>760</y>
+        <width>221</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(238, 238, 236);</string>
+      </property>
+      <property name="text">
+       <string>Copy Cell Data to Clipboard</string>
       </property>
      </widget>
     </widget>

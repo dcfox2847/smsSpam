@@ -57,9 +57,11 @@ class Data:
         self.df['Length'] = self.df['SMS'].apply(len)
         # Second dataset to be used with GUI
         self.df2 = pd.read_csv(file_path, sep='\t', header=None, names=['Label', 'SMS'])
-        self.df2['Length'] = self.df['SMS'].apply(len)
+        self.df2['Length'] = self.df2['SMS'].apply(len)
         # Third dataset to be used with
         """ POSSIBLY USE A THIRD DATASET """
+        self.df3 = pd.read_csv(file_path, sep='\t', header=None, names=['Label', 'SMS'])
+        self.df3['Length'] = self.df3['SMS'].apply(len)
         # Create keys for the labels
         self.df.loc[:, 'Label'] = self.df.Label.map({'ham':0, 'spam':1})
         # Split the data, and initiate the count vectorizer
