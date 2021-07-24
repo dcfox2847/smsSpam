@@ -21,7 +21,7 @@ class Hist_Canvas(FigureCanvas):
         data = Data()
         super().__init__(fig)
         self.setParent(parent)
-        data.df2.hist(column="Length", by="Label", bins=50, ax=self.ax1)
+        data.df2.hist(column="Length", by="Label", legend=True, bins=50, ax=self.ax1)
         plt.show()
 
 class Heat_Canvas(FigureCanvas):
@@ -113,10 +113,18 @@ class MainWindow:
         prec_text = self.ui.precision_label.text() + " " + self.data.precision_score
         recall_text = self.ui.recall_label.text() + " " + self.data.recall_score
         f1_text = self.ui.f1_label.text() + " " + self.data.f1_score
+        lr_acc_text = self.ui.lr_accuracy_label.text() + " " + self.data.lr_accuracy_score
+        lr_prec_text = self.ui.lr_precision_label.text() + " " + self.data.lr_precision_score
+        lr_recall_text = self.ui.lr_recall_label.text() + " " + self.data.lr_recall_score
+        lr_f1_text = self.ui.lr_f1_label.text() + " " + self.data.lr_f1_score
         self.ui.accuracy_label.setText(acc_text)
         self.ui.precision_label.setText(prec_text)
         self.ui.recall_label.setText(recall_text)
         self.ui.f1_label.setText(f1_text)
+        self.ui.lr_accuracy_label.setText(lr_acc_text)
+        self.ui.lr_precision_label.setText(lr_prec_text)
+        self.ui.lr_recall_label.setText(lr_recall_text)
+        self.ui.lr_f1_label.setText(lr_f1_text)
         data_table = Data_Table(self.data.new_test_dataframe)
         self.ui.data_set_table.setModel(data_table)
         self.ui.data_set_table.resizeColumnsToContents()

@@ -48,7 +48,7 @@ class Ui_Dialog(object):
         self.password_field.setReadOnly(False)
         self.password_field.setObjectName("password_field")
         self.login_button = QtWidgets.QPushButton(Dialog)
-        self.login_button.setGeometry(QtCore.QRect(330, 350, 131, 51))
+        self.login_button.setGeometry(QtCore.QRect(290, 490, 131, 51))
         self.login_button.setStyleSheet("background-color: rgb(211, 215, 207);\n"
 "font-size: 18px;")
         self.login_button.setObjectName("login_button")

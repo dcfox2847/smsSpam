@@ -66,9 +66,9 @@
      <widget class="QFrame" name="frame">
       <property name="geometry">
        <rect>
-        <x>780</x>
+        <x>770</x>
         <y>100</y>
-        <width>241</width>
+        <width>251</width>
         <height>671</height>
        </rect>
       </property>
@@ -91,6 +91,24 @@
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QLabel" name="label_2">
+          <property name="font">
+           <font>
+            <underline>true</underline>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: #ff007f;</string>
+          </property>
+          <property name="text">
+           <string>MNB Scores:</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
         <item>
          <widget class="QLabel" name="accuracy_label">
           <property name="styleSheet">
@@ -137,13 +155,86 @@
           </property>
          </widget>
         </item>
+        <item>
+         <widget class="Line" name="line">
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">
+background-color: #ff007f;</string>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_3">
+          <property name="font">
+           <font>
+            <underline>true</underline>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: #ff007f;</string>
+          </property>
+          <property name="text">
+           <string>Logistic Regression Scores:</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="lr_accuracy_label">
+          <property name="styleSheet">
+           <string notr="true">color: #ff007f;</string>
+          </property>
+          <property name="text">
+           <string>Accuracy Score:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="lr_precision_label">
+          <property name="styleSheet">
+           <string notr="true">color: #ff007f;</string>
+          </property>
+          <property name="text">
+           <string>Precision Score:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="lr_recall_label">
+          <property name="styleSheet">
+           <string notr="true">color: #ff007f;
+</string>
+          </property>
+          <property name="text">
+           <string>Recall Score:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="lr_f1_label">
+          <property name="styleSheet">
+           <string notr="true">color: #ff007f;</string>
+          </property>
+          <property name="text">
+           <string>F1 Score:</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
      </widget>
      <widget class="QTableView" name="data_set_table">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>10</x>
         <y>100</y>
         <width>741</width>
         <height>671</height>
