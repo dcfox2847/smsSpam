@@ -1,11 +1,5 @@
-import numpy as np
-import pandas as pd
 import matplotlib.pyplot as plt
 import wordcloud
-import nltk
-import warnings
-import seaborn as sns
-import scipy as sp
 
 # Variables that will be used inside of the class
 dfHam = None

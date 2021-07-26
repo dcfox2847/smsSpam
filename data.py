@@ -1,7 +1,3 @@
-import matplotlib.pyplot as plt
-
-import wordCloudGen
-from dataCleaning import *
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import *
 from sklearn.linear_model import *

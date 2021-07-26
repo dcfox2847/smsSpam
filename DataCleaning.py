@@ -1,6 +1,7 @@
 import pandas as pd
 
-class dataCleaning:
+
+class DataCleaning:
 
     def __init__(self, name=None):
         self.name = name

@@ -1,7 +1,10 @@
 import sys
 import csv
 import pyperclip
+
+import wordCloudGen
 from data import *
+from DataCleaning import *
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -48,7 +51,7 @@ class Word_Cloud_Canvas(FigureCanvas):
         data = Data()
         super().__init__(fig)
         self.setParent(parent)
-        training_frames, test_frames = dataCleaning.make_sets(data.df, data.training_frames, data.test_frames)
+        training_frames, test_frames = DataCleaning.make_sets(data.df, data.training_frames, data.test_frames)
         stop_loop = False
         while not stop_loop:
             if type.lower() == "train":
