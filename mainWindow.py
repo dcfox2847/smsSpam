@@ -97,7 +97,6 @@ class MainWindow:
         self.main_win = QMainWindow()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self.main_win)
-
         self.ui.stackedWidget.setCurrentWidget(self.ui.data_page)
         self.ui.data_button.clicked.connect(self.show_data)
         self.ui.hist_button.clicked.connect(self.show_hist)
@@ -105,6 +104,7 @@ class MainWindow:
         self.ui.train_cloud_button.clicked.connect(self.show_train_cloud)
         self.ui.test_cloud_button.clicked.connect(self.show_test_cloud)
         self.ui.check_button.clicked.connect(self.show_check_message)
+        
         # The 'data' variable, will hold all of the data instantiated from teh data, class
         self.data = Data()
         self.ui.check_message_button.clicked.connect(self.message_button_clicked)
@@ -112,6 +112,7 @@ class MainWindow:
         heat_chart = Heat_Canvas(self.ui.heat_widget)
         train_word_cloud_chart = Word_Cloud_Canvas(self.ui.train_cloud_widget, "Train")
         test_word_cloud_chart = Word_Cloud_Canvas(self.ui.test_cloud_widget, "Test")
+        
         # Add the metric information to the labels on the main page of the application
         acc_text = self.ui.accuracy_label.text() + " " + self.data.accuracy_score
         prec_text = self.ui.precision_label.text() + " " + self.data.precision_score
@@ -135,6 +136,7 @@ class MainWindow:
         self.ui.get_row_button.clicked.connect(self.get_row_data)
 
     def get_row_data(self):
+        
         message = []
         length = []
         result = []
@@ -145,6 +147,7 @@ class MainWindow:
 
 
     def message_button_clicked(self):
+        
         # data = Data()
         message_test = self.ui.message_text_field.text()
         text = self.data.count_vector.transform([message_test])
@@ -216,6 +219,7 @@ class LoginWindow(QDialog):
         login = False
         username_found = False
         login_success = "Unsuccessful"
+        
         # Add a conditional check against a CSV to see if the username and password are valid
         # If so, use conditional to change 'login_success' variable to "Access Granted" or "Access Denied"
         with open(filename, 'r') as csv_file:
@@ -232,7 +236,6 @@ class LoginWindow(QDialog):
                         self.log_to_file(username, password, login_success)
                         self.hide()
                         main_win.show()
-                        # self.close()
                     else:
                         login_success = "Unsuccessful"
                         msg = QMessageBox()
@@ -240,9 +243,6 @@ class LoginWindow(QDialog):
                         msg.setText("Incorrect Username or Password")
                         msg.exec_()
                         self.log_to_file(username, password, login_success)
-                        # Switch to the main window here
-                        # self.hide()
-
                 else:
                     continue
             if not login and not username_found:
