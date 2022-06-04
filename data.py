@@ -8,6 +8,7 @@ import pandas as pd
 
 
 class Data:
+    
     # Variables
     column_names = ["label", "sms"]
     training_set = pd.DataFrame(columns=column_names)
@@ -17,8 +18,10 @@ class Data:
     new_test_dataframe = pd.DataFrame(columns=['SMS', 'Length', 'Result'])
     i = 0
 
+    # MAIN BODY OF APPLICATION
+    
     def __init__(self):
-        # MAIN BODY OF APPLICATION
+        
         # Variables:
         self.column_names = ["label", "sms"]
         self.training_set = pd.DataFrame(columns=self.column_names)
@@ -47,34 +50,44 @@ class Data:
         # Import the data from the dataset
         # file_path = '/home/televator/Coding/spam_sample/smsspamcollection/SMSSpamCollection'
         file_path = 'SMSSpamCollection.csv'
+        
         # Take data from CSV dataset and put it into a Pandas DataFrame
         # First dataset to be used with Multinomial Naieve Bayes
         self.df = pd.read_csv(file_path, sep='\t', header=None, names=['Label', 'SMS'])
         self.df['Length'] = self.df['SMS'].apply(len)
+        
         # Second dataset to be used with GUI
         self.df2 = pd.read_csv(file_path, sep='\t', header=None, names=['Label', 'SMS'])
         self.df2['Length'] = self.df2['SMS'].apply(len)
+        
         # Third dataset to be used with
         """ POSSIBLY USE A THIRD DATASET """
         self.df3 = pd.read_csv(file_path, sep='\t', header=None, names=['Label', 'SMS'])
         self.df3['Length'] = self.df3['SMS'].apply(len)
+        
         # Create keys for the labels
         self.df.loc[:, 'Label'] = self.df.Label.map({'ham':0, 'spam':1})
+        
         # Split the data, and initiate the count vectorizer
         x_train, x_test, y_train, y_test = train_test_split(self.df['SMS'], self.df['Label'], test_size=0.20, random_state=1)
+        
         # Create the count vectorizer
         self.count_vector = CountVectorizer()
+        
         # Vectorize the data, then test it in the 'mnb' algorithm
         training_data = self.count_vector.fit_transform(x_train)
         testing_data = self.count_vector.transform(x_test)
+        
         # Train the Multinomial Naive Bayes model
         self.mnb = MultinomialNB()
         self.mnb.fit(training_data, y_train)
         self.predictions = self.mnb.predict(testing_data)
+        
         # Train the Logisitic regression model
         self.lr = LogisticRegression(solver='liblinear', penalty='l1')
         self.lr.fit(training_data, y_train)
         self.lr_predictions = self.lr.predict(testing_data)
+        
         # Create a new dataframe that will hold all result data for plotting
         # This data frame has the SMS message, the length of the message, and will show 'Spam' or 'Ham' as a result
         for row in x_test:
@@ -99,6 +112,7 @@ class Data:
         self.precision_score = str(precision_score(y_test, self.predictions))
         self.recall_score = str(recall_score(y_test, self.predictions))
         self. f1_score = str(f1_score(y_test, self.predictions))
+        
         # Get the same evaulation data from the logisitic regression model
         self.lr_accuracy_score = str(accuracy_score(y_test, self.lr_predictions))
         self.lr_precision_score = str(precision_score(y_test, self.lr_predictions))
@@ -106,34 +120,3 @@ class Data:
         self.lr_f1_score = str(f1_score(y_test, self.lr_predictions))
 
 
-"""
-
-    THIS DATA BELOW IS THE VISUALIZATIONS, CREATED IN THIS CLASS AND THEN MOVED.
-    KEPT FOR REFERENCE.
-
-        # Histogram of date
-        # self.df.hist(column='Length', by='Label', bins=50, figsize=(10,4))
-        # plt.show()
-
-        # def plot_hist():
-        #     fig_hist = self.df.hist(column='Length', by='Label', bins=50, figsize=(10,4))
-        #     plt.show()
-        #     return fig_hist
-
-
-        # Make heatmap from Bag of words 'training_data'
-        # conf_matrix = confusion_matrix(y_test, self.predictions)
-        # fig, ax = plt.subplots(figsize=(8, 6))
-        # df_cm = pd.DataFrame(conf_matrix, index=self.mnb.classes_,
-        #                      columns=self.mnb.classes_)
-        # sns.heatmap(df_cm, annot=True, fmt="d", ax=ax)
-        # plt.ylabel('True Label')
-        # plt.xlabel('Predicted Label')
-        # plt.show()
-
-        # Make WordClouds of each the training set and the test set
-        # Create WordClouds for the Test and the Training set
-        # training_frames, test_frames = dataCleaning.make_sets(self.df, self.training_frames, self.test_frames)
-        # wordCloudGen.show_wordcloud(training_frames, "Training Set")
-        # wordCloudGen.show_wordcloud(test_frames, "Test Set")
-"""
